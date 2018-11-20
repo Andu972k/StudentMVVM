@@ -1,0 +1,36 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StudentMVVM.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModel="using:StudentMVVM.ViewModel"
+    x:Class="StudentMVVM.View.CreateStudentPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <ViewModel:CreateStudentViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <TextBlock x:Name="Page 1" HorizontalAlignment="Left" Margin="512,74,0,0" TextWrapping="Wrap" Text="Create New Student" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock HorizontalAlignment="Left" Margin="172,254,0,0" TextWrapping="Wrap" Text="Number" VerticalAlignment="Top" Height="38" Width="108" FontSize="24"/>
+        <TextBlock HorizontalAlignment="Left" Margin="172,340,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock HorizontalAlignment="Left" Margin="172,436,0,0" TextWrapping="Wrap" Text="Year of birth" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock HorizontalAlignment="Left" Margin="172,542,0,0" TextWrapping="Wrap" Text="Address" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock HorizontalAlignment="Left" Margin="172,658,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" FontSize="24"/>
+        <TextBox HorizontalAlignment="Left" Margin="600,254,0,0" TextWrapping="Wrap" Text="{Binding NewStudent.Number, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="600,340,0,0" TextWrapping="Wrap" Text="{Binding NewStudent.Name, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="600,436,0,0" TextWrapping="Wrap" Text="{Binding NewStudent.YearOfBirth, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="600,542,0,0" TextWrapping="Wrap" Text="{Binding NewStudent.Address, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="600,658,0,0" TextWrapping="Wrap" Text="{Binding NewStudent.Email, Mode=TwoWay}" VerticalAlignment="Top"/>
+        <Button Click="Button_Click" Content="Main Page" HorizontalAlignment="Left" Margin="86,884,0,0" VerticalAlignment="Top" Height="50" Width="101"/>
+        <!--<HyperlinkButton Content="Main Page" HorizontalAlignment="Left" Margin="380,910,0,0" VerticalAlignment="Top" Foreground="#FF031A2C">
+            <HyperlinkButton.Background>
+                <SolidColorBrush Color="#FF787373" Opacity="0.3"/>
+            </HyperlinkButton.Background>
+        </HyperlinkButton>-->
+
+    </Grid>
+</Page>
