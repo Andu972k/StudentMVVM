@@ -14,7 +14,7 @@
     </Page.DataContext>
 
     <Grid>
-        <TextBlock x:Name="Page 1" HorizontalAlignment="Left" Margin="512,74,0,0" TextWrapping="Wrap" Text="Create New Student" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock HorizontalAlignment="Left" Margin="512,74,0,0" TextWrapping="Wrap" Text="Create New Student" VerticalAlignment="Top" FontSize="36"/>
         <TextBlock HorizontalAlignment="Left" Margin="172,254,0,0" TextWrapping="Wrap" Text="Number" VerticalAlignment="Top" Height="38" Width="108" FontSize="24"/>
         <TextBlock HorizontalAlignment="Left" Margin="172,340,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontSize="24"/>
         <TextBlock HorizontalAlignment="Left" Margin="172,436,0,0" TextWrapping="Wrap" Text="Year of birth" VerticalAlignment="Top" FontSize="24"/>
@@ -26,7 +26,8 @@
         <TextBox HorizontalAlignment="Left" Margin="600,542,0,0" TextWrapping="Wrap" Text="{Binding NewStudent.Address, Mode=TwoWay}" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="600,658,0,0" TextWrapping="Wrap" Text="{Binding NewStudent.Email, Mode=TwoWay}" VerticalAlignment="Top"/>
         <Button Click="Button_Click" Content="Main Page" HorizontalAlignment="Left" Margin="86,884,0,0" VerticalAlignment="Top" Height="50" Width="101"/>
-        <!--<HyperlinkButton Content="Main Page" HorizontalAlignment="Left" Margin="380,910,0,0" VerticalAlignment="Top" Foreground="#FF031A2C">
+        <Button Content="Add" Command="{Binding AddCommand}" Margin="600,790,0,164" Height="46" Width="64"/>
+            <!--<HyperlinkButton Content="Main Page" HorizontalAlignment="Left" Margin="380,910,0,0" VerticalAlignment="Top" Foreground="#FF031A2C">
             <HyperlinkButton.Background>
                 <SolidColorBrush Color="#FF787373" Opacity="0.3"/>
             </HyperlinkButton.Background>

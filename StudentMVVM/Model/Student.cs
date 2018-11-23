@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StudentMVVM.Exceptions;
 
 namespace StudentMVVM.Model
 {
@@ -13,7 +14,7 @@ namespace StudentMVVM.Model
 
         private int _number;
         private string _name;
-        private string _yearOfBirth;
+        private int _yearOfBirth;
         private string _address;
         private string _email;
         private string _imageSource = @"C:\EASJ\SWC\Programmer\Sesion 21\StudentMVVM\StudentMVVM\StudentMVVM\Assets\Wide310x150Logo.scale-200.png";
@@ -48,7 +49,7 @@ namespace StudentMVVM.Model
         /// Returns a students year of birth.
         /// </summary>
         /// <returns>string</returns>
-        public string YearOfBirth
+        public int YearOfBirth
         {
             get { return _yearOfBirth; }
             set { _yearOfBirth = value; }
@@ -74,6 +75,12 @@ namespace StudentMVVM.Model
             set { _email = value; }
         }
 
+        public string ImageSource
+        {
+            get { return _imageSource; }
+            
+        }
+
 
 
         #endregion
@@ -88,13 +95,31 @@ namespace StudentMVVM.Model
         /// <param name="yearOfBirth"></param>
         /// <param name="address"></param>
         /// <param name="email"></param>
-        public Student(int number, string name, string yearOfBirth, string address, string email)
+        public Student(int number, string name, int yearOfBirth, string address, string email)
         {
+            
             _number = number;
             _name = name;
             _yearOfBirth = yearOfBirth;
+            if (_yearOfBirth < 1990)
+            {
+                throw new YearOfBirthTooLowException("Year of birth too low, Please type a year from 1990-2018");
+            }
+            else if (_yearOfBirth > DateTime.Now.Year)
+            {
+                throw new YearOfBirthIsTooHighException($"Year of birth is too high, Please type a year from 1990-{DateTime.Now.Year}");
+            }
             _address = address;
             _email = email;
+            if (!email.Contains("@"))
+            {
+                throw new EmailDoesNotContainQuickAException("Email should contain a @");
+            }
+
+        }
+
+        public Student()
+        {
 
         }
 
@@ -109,6 +134,16 @@ namespace StudentMVVM.Model
         public override string ToString()
         {
             return $"Student number {_number} is named {_name} and is born in the year {_yearOfBirth}, {_name} lives at {_address}, and {_name}'s email is {_email}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (Number == ((Student)obj).Number)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         #endregion

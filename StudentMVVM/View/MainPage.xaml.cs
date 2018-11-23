@@ -26,5 +26,10 @@ namespace StudentMVVM.View
         {
             this.InitializeComponent();
         }
+
+        private void Button2_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CreateStudentPage));
+        }
     }
 }

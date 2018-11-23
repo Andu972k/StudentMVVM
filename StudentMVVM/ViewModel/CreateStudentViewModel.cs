@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using StudentMVVM.Common;
+using StudentMVVM.Handler;
 using StudentMVVM.Model;
 
 namespace StudentMVVM.ViewModel
@@ -12,10 +13,10 @@ namespace StudentMVVM.ViewModel
         #region Instance Fields
 
         private ObservableCollection<Student> _listOfStudents = StudentCatalog.Instance.Students;
-        private Student _newStudent;
+        private Student _newStudent = new Student();
+
 
         private ICommand _addCommand;
-
 
 
         #endregion
@@ -30,17 +31,20 @@ namespace StudentMVVM.ViewModel
             
         }
 
+        public ICommand AddCommand
+        {
+            get { return _addCommand; }
+            set { _addCommand = value; }
+        }
+
         public Student NewStudent
         {
             get { return _newStudent; }
             set { _newStudent = value; }
         }
 
-        public ICommand AddCommand
-        {
-            get { return _addCommand; }
-            set { _addCommand = value; }
-        }
+        public ManageStudentHandler ManageStudentHandler { get; set; }
+        
 
 
         #endregion
@@ -49,7 +53,7 @@ namespace StudentMVVM.ViewModel
 
         public CreateStudentViewModel()
         {
-            _addCommand = new RelayCommand(Add);
+            ManageStudentHandler = new ManageStudentHandler(this);
         }
 
 
@@ -57,10 +61,7 @@ namespace StudentMVVM.ViewModel
 
 
         #region Methods
-        public void Add()
-        {
-
-        }
+        
 
 
         #endregion

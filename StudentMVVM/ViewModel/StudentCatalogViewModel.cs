@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using StudentMVVM.Annotations;
 using StudentMVVM.Common;
+using StudentMVVM.Handler;
 using StudentMVVM.Model;
+using StudentMVVM.View;
 
 namespace StudentMVVM.ViewModel
 {
@@ -23,9 +25,9 @@ namespace StudentMVVM.ViewModel
         private Student _selectedStudent;
         private int _selectedIndex;
 
-        
         private ICommand _deleteCommand;
         private ICommand _updateCommand;
+
 
 
         #endregion
@@ -35,9 +37,7 @@ namespace StudentMVVM.ViewModel
 
         public StudentCatalogViewModel()
         {
-            
-            _deleteCommand = new RelayCommand(RemoveAt);
-            _updateCommand = new RelayCommand(Update);
+            ManageStudentHandler = new ManageStudentHandler(this);
             
 
         }
@@ -55,29 +55,6 @@ namespace StudentMVVM.ViewModel
             get { return _listOfStudents; }
         }
 
-        public Student SelectedStudent
-        {
-            get { return _selectedStudent; }
-            set
-            {
-                _selectedStudent = value; 
-                OnPropertyChanged();
-            }
-        }
-
-
-        public int SelectedIndex
-        {
-            get { return _selectedIndex; }
-            set
-            {
-                _selectedIndex = value;
-                OnPropertyChanged();
-            }
-        }
-
-       
-
         public ICommand DeleteCommand
         {
             get { return _deleteCommand; }
@@ -90,6 +67,38 @@ namespace StudentMVVM.ViewModel
             set { _updateCommand = value; }
         }
 
+        public Student SelectedStudent
+        {
+            get { return _selectedStudent;}
+            set
+            {
+                _selectedStudent = value; 
+                OnPropertyChanged();
+                ((RelayCommand) DeleteCommand).RaiseCanExecuteChanged();
+                ((RelayCommand) UpdateCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+
+
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        public ManageStudentHandler ManageStudentHandler { get; set; }
+
+
+
+       
+
 
         #endregion
 
@@ -99,31 +108,17 @@ namespace StudentMVVM.ViewModel
 
         
 
-        public void RemoveAt()
-        {
-            _listOfStudents.RemoveAt(SelectedIndex);
-        }
-
-        public void Update()
-        {
-            int index = SelectedIndex;
-            Student studentToUpdate = new Student(SelectedStudent.Number, SelectedStudent.Name, SelectedStudent.YearOfBirth, SelectedStudent.Address, SelectedStudent.Email);
-
-            //ListOfStudents[index] = studentToUpdate;
-            ListOfStudents.RemoveAt(index);
-            ListOfStudents.Insert(index, studentToUpdate);
-
-
-        }
+        
 
         public bool StudentIsSelected()
         {
-            if (SelectedStudent is null)
-            {
-                return true;
-            }
+            //if (SelectedStudent == null)
+            //{
+            //    return false;
+            //}
 
-            return false;
+            //return true;
+            return SelectedStudent != null;
         }
 
 

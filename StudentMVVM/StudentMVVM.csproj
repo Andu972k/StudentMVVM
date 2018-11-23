@@ -95,7 +95,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\MessageDialogHelper.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Exceptions\EmailDoesNotContainQuickAException.cs" />
+    <Compile Include="Exceptions\StudentNumberAlreadyExcistsException.cs" />
+    <Compile Include="Exceptions\YearOfBirthIsTooHighException.cs" />
+    <Compile Include="Exceptions\YearOfBirthTooLowException.cs" />
+    <Compile Include="Handler\ManageStudentHandler.cs" />
     <Compile Include="ViewModel\CreateStudentViewModel.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Model\StudentCatalog.cs" />
